@@ -59,4 +59,34 @@
     <servlet-name>BookEntry</servlet-name>
     <url-pattern>/BookEntry</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchBookDisplay</display-name>
+    <servlet-name>SearchBookDisplay</servlet-name>
+    <servlet-class>com.aman.LibraryManagementSystem.SearchBookDisplay</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchBookDisplay</servlet-name>
+    <url-pattern>/SearchBookDisplay</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentDetailsEntryPage</display-name>
+    <servlet-name>StudentDetailsEntryPage</servlet-name>
+    <servlet-class>com.aman.LibraryManagementSystem.StudentDetailsEntryPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentDetailsEntryPage</servlet-name>
+    <url-pattern>/StudentDetailsEntryPage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BookIssueLogic</display-name>
+    <servlet-name>BookIssueLogic</servlet-name>
+    <servlet-class>com.aman.LibraryManagementSystem.BookIssueLogic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookIssueLogic</servlet-name>
+    <url-pattern>/BookIssueLogic</url-pattern>
+  </servlet-mapping>
 </web-app>
