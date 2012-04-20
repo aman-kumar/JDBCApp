@@ -1,79 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.*,java.sql.*"%>
+<%@ page import="com.aman.LibraryManagementSystem.*,java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
-<h1>Welcome to the page that shows the contents</h1>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Test</title>
 </head>
-<%!Connection con = null;
-	Statement stm;
-	ResultSet rs;
-	String username = "root";
-	String password = "aman";
-	String url = "jdbc:mysql://localhost:3306/";
-	String database = "libraryManagementSystem";
-	String driver = "com.mysql.jdbc.Driver";
-	String sql = "SELECT * from bookdetails";
-	String title;
-	String authorName;
-	String bookGenre;
-	String bookDescription;
-	String bookPublisher;%>
 <body>
+<%!ResultSet rsJsp;%>
 <table border="2" bordercolor="black">
-	<caption>Books present in the library</caption>
+	<caption>
+	<h4>Books present in the library</h4>
+	</caption>
 	<tr>
-		<th width="30">Title</th>
-		<th width="20">Author</th>
-		<th width="30">Genre</th>
-		<th width="100">Description</th>
-		<th width="30">Publisher</th>
-		<th width="30">Copies</th>
-
+		<th width="15%">Title</th>
+		<th width="15%">Author</th>
+		<th width="15%">Genre</th>
+		<th width="15%">Description</th>
+		<th width="15%">Publisher</th>
+		<th width="15%">Copies</th>
 	</tr>
-
-
-
 	<%
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url + database, username,
-					password);
-			stm = con.createStatement();
-			rs = stm.executeQuery(sql);
-			while (rs.next()) {
+		DatabaseConnectionDAO dcDAO = new DatabaseConnectionDAO();
+		dcDAO.setUpConnectionToDatabase();
+		String query = "SELECT * FROM bookdetails";
+		dcDAO.executeSqlQuery(query);
+		rsJsp = dcDAO.getExecutedSqlQueryDisplay();
+		while (rsJsp.next()) {
 	%>
-
-
-
 	<tr>
-		<td width="30" bordercolor="pink"><%=rs.getString("bookTitle")%></td>
-		<td width="20"><%=rs.getString("author")%></td>
-		<td width="30"><%=rs.getString("genre")%></td>
-		<td width="100"><%=rs.getString("book_description")%></td>
-		<td width="30"><%=rs.getString("publisher")%></td>
-		<td width="30"><%=rs.getString("noOfCopies")%></td>
+		<td width="15%"><%=rsJsp.getString("bookTitle")%></td>
+		<td width="15%"><%=rsJsp.getString("author")%></td>
+		<td width="15%"><%=rsJsp.getString("genre")%></td>
+		<td width="15%"><%=rsJsp.getString("book_description")%></td>
+		<td width="15%"><%=rsJsp.getString("publisher")%></td>
+		<td width="15%"><%=rsJsp.getString("noOfCopies")%></td>
 	</tr>
 	<%
 		}
+		dcDAO.closeDatabaseConnection();
 	%>
 </table>
-
-<%
-	con.close();
-	} catch (Exception ex) {
-		ex.printStackTrace();
-	}
-%>
-
-
-
-
-
-
 </body>
 </html>
