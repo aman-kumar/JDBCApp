@@ -2,8 +2,6 @@ package com.aman.LibraryManagementSystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseConnectionDAO {
@@ -13,13 +11,10 @@ public class DatabaseConnectionDAO {
 	private String url = "jdbc:mysql://localhost:3306/";
 	private String database = "librarymanagementsystem";
 	private Connection con = null;
-	private PreparedStatement pStatement;
-	private ResultSet rs;
-	private String sqlQueryEntered;
 
 	// private ResultSet rs1;
 
-	public void setUpConnectionToDatabase() {
+	public Connection getConnection() {
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException ex) {
@@ -34,30 +29,7 @@ public class DatabaseConnectionDAO {
 			ex1.printStackTrace();
 
 		}
-	}
-
-	public void executeSqlQuery(String sql) {
-		sqlQueryEntered = sql;
-		try {
-			pStatement = con.prepareStatement(sqlQueryEntered);
-			rs = pStatement.executeQuery();
-
-		} catch (SQLException ex2) {
-			ex2.printStackTrace();
-		}
-	}
-
-	public ResultSet getExecutedSqlQueryDisplay() {
-		return rs;
-	}
-
-	public void closeDatabaseConnection() {
-		try {
-			con.close();
-			System.out.println("Successfully closed the database connection");
-		} catch (SQLException ex2) {
-			ex2.printStackTrace();
-		}
+		return con;
 	}
 
 }

@@ -23,23 +23,19 @@
 
 	</tr>
 	<%
-		DatabaseConnectionDAO dcDAO1 = new DatabaseConnectionDAO();
-		dcDAO1.setUpConnectionToDatabase();
-		String query = "SELECT * FROM studentdetails";
-		dcDAO1.executeSqlQuery(query);
-		rsJsp1 = dcDAO1.getExecutedSqlQueryDisplay();
-		while (rsJsp1.next()) {
+	rsJsp1=(ResultSet)request.getAttribute("studentDetail");
+	
+	while (rsJsp1.next()) {
 	%>
 	<tr>
 		<td width="15%"><%=rsJsp1.getString("firstName")%></td>
 		<td width="15%"><%=rsJsp1.getString("lastName")%></td>
 		<td width="15%"><%=rsJsp1.getString("emailId")%></td>
 		<td width="15%"><%=rsJsp1.getString("address")%></td>
-		<td width="15%"><%=rsJsp1.getString("phoneNumber")%></td>
+		<td width="15%"><%=rsJsp1.getInt("phoneNumber")   %></td>
 	</tr>
 	<%
-		}
-		dcDAO1.closeDatabaseConnection();
+	}
 	%>
 </table>
 </body>

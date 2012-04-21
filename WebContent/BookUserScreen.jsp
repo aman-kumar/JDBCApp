@@ -22,11 +22,8 @@
 		<th width="15%">Copies</th>
 	</tr>
 	<%
-		DatabaseConnectionDAO dcDAO = new DatabaseConnectionDAO();
-		dcDAO.setUpConnectionToDatabase();
-		String query = "SELECT * FROM bookdetails";
-		dcDAO.executeSqlQuery(query);
-		rsJsp = dcDAO.getExecutedSqlQueryDisplay();
+	rsJsp=(ResultSet)request.getAttribute("bookDetails");	
+	//rsJsp = dcDAO.getExecutedSqlQueryDisplay();
 		while (rsJsp.next()) {
 	%>
 	<tr>
@@ -39,7 +36,7 @@
 	</tr>
 	<%
 		}
-		dcDAO.closeDatabaseConnection();
+	//	dcDAO.closeDatabaseConnection();
 	%>
 </table>
 </body>
