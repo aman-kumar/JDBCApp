@@ -5,7 +5,7 @@ import java.sql.Connection;
 public class LibraryManagement {
 	Connection con = null;
 	QueryExecution qeObject = new QueryExecution();
-	DatabaseConnectionDAO objdatabasecon = new DatabaseConnectionDAO();
+	ConnectionUtil objdatabasecon = new ConnectionUtil();
 
 	private String bookTitle;
 	private String bookAuthor;

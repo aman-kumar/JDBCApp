@@ -53,7 +53,7 @@
     <description></description>
     <display-name>BookEntry</display-name>
     <servlet-name>BookEntry</servlet-name>
-    <servlet-class>com.aman.LibraryManagementSystem.BookEntry</servlet-class>
+    <servlet-class>com.aman.LibraryManagementSystem.BookEntryServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>BookEntry</servlet-name>
