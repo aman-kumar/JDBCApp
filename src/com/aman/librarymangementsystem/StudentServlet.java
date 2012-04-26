@@ -1,4 +1,4 @@
-package com.aman.LibraryManagementSystem;
+package com.aman.librarymangementsystem;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class StudentDetailsEntryPage
  */
-public class StudentDetailsEntryPage extends HttpServlet {
+public class StudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public StudentDetailsEntryPage() {
+	public StudentServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

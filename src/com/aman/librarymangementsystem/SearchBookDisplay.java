@@ -1,4 +1,4 @@
-package com.aman.LibraryManagementSystem;
+package com.aman.librarymangementsystem;
 
 import java.io.IOException;
 import java.sql.ResultSet;
