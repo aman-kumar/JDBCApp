@@ -53,7 +53,7 @@ public class BookEntryServlet extends HttpServlet {
 		BookService bookService = new BookService();
 		bookService.create(book);
 		
-		List<Book> books = bookService.listBooks();
+		List<Book> books = bookService.getList();
 		
 		request.setAttribute("bookDetails", books);
 		RequestDispatcher view = request

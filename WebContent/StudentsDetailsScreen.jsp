@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.sql.*,com.aman.LibraryManagementSystem.*"%>
+<%@ page import="java.sql.*,java.util.*,com.aman.librarymangementsystem.*,com.aman.Jdbc.*,com.aman.dao.*,com.aman.domain.*,com.aman.service.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,8 +8,11 @@
 <title>Student Details Screen</title>
 </head>
 <body>
+<%!
+List<Student> studentList=new ArrayList<Student>();
 
-<%!ResultSet rsJsp1;%>
+%>
+
 <table border="2" bordercolor="black">
 	<caption>
 	<h4>Students details</h4>
@@ -23,16 +26,16 @@
 
 	</tr>
 	<%
-	rsJsp1=(ResultSet)request.getAttribute("studentDetail");
-	
-	while (rsJsp1.next()) {
+	studentList=(ArrayList<Student>)request.getAttribute("student");
+	Iterator itr=studentList.iterator();
+	while(itr.hasNext()){
 	%>
 	<tr>
-		<td width="15%"><%=rsJsp1.getString("firstName")%></td>
-		<td width="15%"><%=rsJsp1.getString("lastName")%></td>
-		<td width="15%"><%=rsJsp1.getString("emailId")%></td>
-		<td width="15%"><%=rsJsp1.getString("address")%></td>
-		<td width="15%"><%=rsJsp1.getInt("phoneNumber")   %></td>
+	<td width="15%"><%=studentList.g  %></td>
+		<td width="15%"><%=//rsJsp1.getString("lastName")%></td>
+		<td width="15%"><%=//rsJsp1.getString("emailId")%></td>
+		<td width="15%"><%=//rsJsp1.getString("address")%></td>
+		<td width="15%"><%=//rsJsp1.getInt("phoneNumber")   %></td>  
 	</tr>
 	<%
 	}

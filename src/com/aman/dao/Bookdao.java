@@ -7,36 +7,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aman.LibraryManagementSystem.ConnectionUtil;
+import com.aman.Jdbc.ConnectionUtils;
 import com.aman.domain.Book;
 
 public class BookDao {
-	
-	public void create(Book book){
-		Connection con = ConnectionUtil.getConnection();
+
+	public void createBook(Book book) {
+		Connection con = ConnectionUtils.getConnection();
+
 		try {
-			PreparedStatement statement = populateCreateBookPreparedStatement(book, con);
+
+			PreparedStatement statement = populateCreateBookStatement(book, con);
+
 			int result = statement.executeUpdate();
 			if (result == 1) {
-				System.out.println("query sucessfully executed");
+				System.out.println("Query is sucessfully executed");
 			} else {
-				System.out.println("query was not sucessfully executed");
+				System.out.println("Query is not sucessfully executed");
 			}
 
 		} catch (SQLException ex) {
-			throw new IllegalStateException(ex);
+			ex.printStackTrace();
 		} finally {
 			try {
 				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (SQLException ex1) {
+				throw new IllegalStateException(ex1);
 			}
+
 		}
+
 	}
 
-	private PreparedStatement populateCreateBookPreparedStatement(Book book,
+	private PreparedStatement populateCreateBookStatement(Book book,
 			Connection con) throws SQLException {
-		PreparedStatement statement = con.prepareStatement("INSERT into bookdetails values(?,?,?,?,?,?)");
+		String query = "INSERT into bookdetails values(?,?,?,?,?,?)";
+
+		PreparedStatement statement = con.prepareStatement(query);
 		statement.setString(1, book.getTitle());
 		statement.setString(2, book.getAuthor());
 		statement.setString(3, book.getGenre());
@@ -45,39 +52,34 @@ public class BookDao {
 		statement.setInt(6, book.getCopies());
 		return statement;
 	}
-	
-	public List<Book> listBooks() {
-		String sql2 = "SELECT bookTitle, author, book_Description, publisher, genre,noOfCopies from bookdetails";
-		List<Book> books = new ArrayList<Book>();
-		Connection con = ConnectionUtil.getConnection();
+
+	public List<Book> listBook() {
+		Connection con = ConnectionUtils.getConnection();
+		Book book = new Book();
+		List<Book> bookList = new ArrayList<Book>();
 		try {
-			PreparedStatement statement = con.prepareStatement(sql2);
-		    populateBookList(books, statement);
+
+			String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies";
+			PreparedStatement statement = con.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				book.setTitle(result.getString("bookTitle"));
+				book.setAuthor(result.getString("author"));
+				book.setGenre(result.getString("genre"));
+				book.setDescription(result.getString("book_description"));
+				book.setPublisher(result.getString("publisher"));
+				book.setCopies(result.getInt("noOfCopies"));
+			}
 		} catch (SQLException ex) {
 			throw new IllegalStateException(ex);
-		} finally{
+		} finally {
 			try {
 				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (SQLException ex2) {
+				throw new IllegalStateException(ex2);
 			}
 		}
-		return books;
+		return bookList;
 	}
 
-	private void populateBookList(List<Book> books, PreparedStatement statement)
-			throws SQLException {
-		ResultSet resultSet;
-		resultSet = statement.executeQuery();
-		while(resultSet.next()){
-			Book book = new Book();
-			book.setTitle(resultSet.getString("bookTitle"));
-			book.setAuthor(resultSet.getString("author"));
-			book.setGenre(resultSet.getString("genre"));
-			book.setDescription(resultSet.getString("book_description"));
-			book.setPublisher(resultSet.getString("publisher"));
-			book.setCopies(resultSet.getInt("noOfCopies"));
-			books.add(book);
-		}
-	}
 }

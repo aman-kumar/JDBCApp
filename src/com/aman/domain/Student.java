@@ -47,4 +47,9 @@ public class Student {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public void setPhoneNumber(String phoneNumber) {
+		// TODO Auto-generated method stub
+		this.phoneNumber = Integer.parseInt(phoneNumber);
+	}
+
 }
