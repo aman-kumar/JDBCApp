@@ -56,7 +56,7 @@
 		<description></description>
 		<display-name>BookEntry</display-name>
 		<servlet-name>BookEntry</servlet-name>
-		<servlet-class>com.aman.LibraryManagementSystem.BookEntryServlet</servlet-class>
+		<servlet-class>com.aman.librarymanagementsystem.BookServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BookEntry</servlet-name>
@@ -66,7 +66,7 @@
 		<description></description>
 		<display-name>SearchBookDisplay</display-name>
 		<servlet-name>SearchBookDisplay</servlet-name>
-		<servlet-class>com.aman.LibraryManagementSystem.SearchBookDisplay</servlet-class>
+		<servlet-class>com.aman.librarymanagementsystem.SearchBookDisplay</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SearchBookDisplay</servlet-name>
@@ -74,29 +74,9 @@
 	</servlet-mapping>
 	<servlet>
 		<description></description>
-		<display-name>StudentDetailsEntryPage</display-name>
-		<servlet-name>StudentDetailsEntryPage</servlet-name>
-		<servlet-class>com.aman.LibraryManagementSystem.StudentDetailsEntryPage</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>StudentDetailsEntryPage</servlet-name>
-		<url-pattern>/StudentDetailsEntryPage</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>BookIssueLogic</display-name>
-		<servlet-name>BookIssueLogic</servlet-name>
-		<servlet-class>com.aman.LibraryManagementSystem.BookIssueLogic</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>BookIssueLogic</servlet-name>
-		<url-pattern>/BookIssueLogic</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
 		<display-name>StudentServlet</display-name>
 		<servlet-name>StudentServlet</servlet-name>
-		<servlet-class>com.aman.librarymangementsystem.StudentServlet</servlet-class>
+		<servlet-class>com.aman.librarymanagementsystem.StudentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>StudentServlet</servlet-name>
