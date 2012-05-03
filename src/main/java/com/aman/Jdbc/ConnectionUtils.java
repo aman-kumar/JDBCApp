@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionUtils {
     private static String userName = "root";
-    private static String password = "aman";
+    private static String password = "";
     private static String driver = "com.mysql.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/";
-    private static String database = "librarymanagementsystem";
+    private static String database = "test";
 
     // private ResultSet rs1;
 
@@ -27,9 +27,10 @@ public class ConnectionUtils {
                     password);
             System.out.println("successfully connected to the database");
         } catch (SQLException ex1) {
-            throw new IllegalStateException();
-
+            // throw new IllegalStateException();
+            ex1.printStackTrace();
         }
         return con;
     }
+
 }
