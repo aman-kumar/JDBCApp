@@ -8,7 +8,7 @@
   <name>JDBCApp</name>
   <description>
         The module containing the web application. 
-    </description>
+  </description>
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
