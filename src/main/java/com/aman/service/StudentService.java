@@ -9,7 +9,7 @@ public class StudentService {
     StudentDao studentdao;
 
     public StudentService() {
-        new StudentDao();
+        studentdao = new StudentDao();
     }
 
     public void create(Student student) {

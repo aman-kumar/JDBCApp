@@ -30,8 +30,8 @@ public class BookDao {
             ex.printStackTrace();
         } finally {
             try {
-                con.close();
-            } catch (SQLException ex1) {
+                // con.close();
+            } catch (Exception ex1) {
                 throw new IllegalStateException(ex1);
             }
 
@@ -55,20 +55,27 @@ public class BookDao {
 
     public List<Book> listBook() {
         Connection con = ConnectionUtils.getConnection();
-        Book book = new Book();
+
         List<Book> bookList = new ArrayList<Book>();
         try {
 
-            String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies";
+            String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails";
             PreparedStatement statement = con.prepareStatement(query);
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                book.setTitle(result.getString("bookTitle"));
-                book.setAuthor(result.getString("author"));
-                book.setGenre(result.getString("genre"));
-                book.setDescription(result.getString("book_description"));
-                book.setPublisher(result.getString("publisher"));
-                book.setCopies(result.getInt("noOfCopies"));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                while (resultSet.next()) {
+                    Book book = new Book();
+                    book.setTitle(resultSet.getString("bookTitle"));
+                    book.setAuthor(resultSet.getString("author"));
+                    book.setGenre(resultSet.getString("genre"));
+                    book.setPublisher(resultSet.getString("publisher"));
+                    book.setDescription(resultSet.getString("book_description"));
+                    book.setCopies(resultSet.getInt("noOfCopies"));
+
+                    bookList.add(book);
+
+                }
+
             }
         } catch (SQLException ex) {
             throw new IllegalStateException(ex);
@@ -82,4 +89,47 @@ public class BookDao {
         return bookList;
     }
 
+    List<Book> searchBookList = new ArrayList<Book>();
+
+    public void searchBook(Book book) {
+        Connection con = ConnectionUtils.getConnection();
+        try {
+            String author1 = book.getAuthor();
+            String title = book.getTitle();
+            String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails WHERE author =? and bookTitle=?";//where bookTitle="
+                    //+ title + " and author= " + author  ;
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,book.getAuthor());
+            statement.setString(2, book.getTitle());
+            ResultSet resultSet = statement.executeQuery();
+            boolean bookPresenceStatus = true;
+
+            while (resultSet.next()) {
+                bookPresenceStatus = false;
+                Book book1 = new Book();
+                book1.setTitle(resultSet.getString("bookTitle"));
+                book1.setAuthor(resultSet.getString("author"));
+                book1.setGenre(resultSet.getString("genre"));
+                book1.setDescription(resultSet.getString("book_description"));
+                book1.setPublisher(resultSet.getString("publisher"));
+                book1.setCopies(resultSet.getInt("noOfCopies"));
+                searchBookList.add(book1);
+            }
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (Exception ex1) {
+                throw new IllegalStateException(ex1);
+
+            }
+
+        }
+
+    }
+
+    public List<Book> listSearchedBook() {
+        return searchBookList;
+    }
 }

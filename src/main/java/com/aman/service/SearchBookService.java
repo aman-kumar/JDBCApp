@@ -2,21 +2,24 @@ package com.aman.service;
 
 import java.util.List;
 
+import com.aman.dao.BookDao;
 import com.aman.dao.SearchBookDao;
 import com.aman.domain.Book;
 
 public class SearchBookService {
-    SearchBookDao bookdao;
+    SearchBookDao searchBookDao;
+    BookDao bookDao ;
 
     public SearchBookService() {
-        bookdao = new SearchBookDao();
+        searchBookDao = new SearchBookDao();
+    bookDao=new BookDao();
     }
 
     public void search(Book book) {
-        bookdao.searchBook(book);
+        bookDao.searchBook(book);
     }
 
     public List<Book> getSearcBookList() {
-        return bookdao.getSearchedBook();
+        return bookDao.listSearchedBook();
     }
 }

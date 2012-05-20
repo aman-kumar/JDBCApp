@@ -19,7 +19,8 @@ public class SearchBookDao {
         // book.getAuthor();
         Connection con = ConnectionUtils.getConnection();
 
-        String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookTable where bookTitle=? and author=? ";
+       // String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails where bookTitle = "+book.getTitle() ;
+        String query="select * from bookdetails ";
         try {
             searchingBook(book, con, query);
         } catch (SQLException ex) {
@@ -36,8 +37,8 @@ public class SearchBookDao {
     private void searchingBook(Book book, Connection con, String query)
             throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
-        statement.setString(1, book.getTitle());
-        statement.setString(2, book.getAuthor());
+    //    statement.setString(1, book.getTitle());
+      //  statement.setString(2, book.getAuthor());
         ResultSet resultset = statement.executeQuery();
         boolean searchResult = true;
         while (resultset.next()) {

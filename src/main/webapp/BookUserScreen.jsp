@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.aman.librarymanagementsystem.*,java.sql.*"   %>
+<%@ page import="com.aman.librarymanagementsystem.*,java.sql.*,java.util.*,com.aman.domain.*"   %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>Test</title>
 </head>
 <body>
-<%!ResultSet rsJsp;%>
+
 <table border="2" bordercolor="black">
 	<caption>
 	<h4>Books present in the library</h4>
@@ -22,22 +22,26 @@
 		<th width="15%">Copies</th>
 	</tr>
 	<%
-	rsJsp=(ResultSet)request.getAttribute("bookDetails");	
-	//rsJsp = dcDAO.getExecutedSqlQueryDisplay();
-		while (rsJsp.next()) {
+	List<Book> bookList=(ArrayList<Book>)request.getAttribute("bookDetails");	
+	//SSystem.out.println(bookList.size());
+	Iterator<Book> itr=bookList.iterator();
+		while (itr.hasNext() ) {
+		   Book book=(Book)itr.next();
 	%>
 	<tr>
-		<td width="15%"><%=rsJsp.getString("bookTitle")%></td>
-		<td width="15%"><%=rsJsp.getString("author")%></td>
-		<td width="15%"><%=rsJsp.getString("genre")%></td>
-		<td width="15%"><%=rsJsp.getString("book_description")%></td>
-		<td width="15%"><%=rsJsp.getString("publisher")%></td>
-		<td width="15%"><%=rsJsp.getString("noOfCopies")%></td>
+		<td width="15%"><%=book.getTitle() %></td>
+		<td width="15%"><%=book.getAuthor()%></td>
+		<td width="15%"><%=book.getGenre()%></td>
+		<td width="15%"><%=book.getDescription()%></td>
+		<td width="15%"><%=book.getPublisher()%></td>
+		<td width="15%"><%=book.getCopies()%></td>
 	</tr>
 	<%
-		}
-	//	dcDAO.closeDatabaseConnection();
+	}
 	%>
+ 
+
+	
 </table>
 </body>
 </html>

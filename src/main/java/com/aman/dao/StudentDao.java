@@ -37,7 +37,7 @@ public class StudentDao {
 
     private PreparedStatement createStudent(Student student)
             throws SQLException {
-        String query = "INSERT into swtudentdetails values(?,?,?,?,?)";
+        String query = "INSERT into studentdetails values(?,?,?,?,?)";
         PreparedStatement statement = con.prepareStatement(query);
         statement.setString(1, student.getFirstName());
         statement.setString(2, student.getLastName());

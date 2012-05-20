@@ -1,6 +1,7 @@
 package com.aman.librarymanagementsystem;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -48,24 +49,28 @@ public class BookServlet extends HttpServlet {
 
     private void execute(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        Book book = new Book();
-        populateBook(request, book);
+        Book book = populateBook(request);
+
         BookService bookService = new BookService();
         bookService.create(book);
-        List<Book> books = bookService.getList();
-        request.setAttribute("bookDetail", books);
+        List<Book> books = new ArrayList<Book>();
+        books = bookService.getList();
+        request.setAttribute("bookDetails", books);
         RequestDispatcher view = request
                 .getRequestDispatcher("BookUserScreen.jsp");
         view.forward(request, response);
+
     }
 
-    private void populateBook(HttpServletRequest request, Book book) {
+    private Book populateBook(HttpServletRequest request) {
+        Book book = new Book();
         book.setAuthor(request.getParameter("author"));
         book.setTitle(request.getParameter("title"));
         book.setCopies(Integer.parseInt(request.getParameter("copies")));
         book.setDescription(request.getParameter("description"));
         book.setGenre(request.getParameter("genre"));
         book.setPublisher(request.getParameter("publisher"));
+        return book;
     }
 
 }

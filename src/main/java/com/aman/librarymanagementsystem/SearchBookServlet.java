@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.aman.domain.Book;
+import com.aman.service.BookService;
 import com.aman.service.SearchBookService;
 
 /**
@@ -51,22 +52,21 @@ public class SearchBookServlet extends HttpServlet {
 
     private void execute(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        Book book = new Book();
-        book.setTitle(request.getParameter("title"));
-        book.setAuthor(request.getParameter("author"));
-        List<Book> bookList = getSearchedBook(book);
-        request.setAttribute("book", bookList);
+       String title=request.getParameter("bookName");
+       String author=request.getParameter("authorName");
+       List<Book> bookList=new ArrayList<Book>(); 
+       Book book=new Book();
+       book.setTitle(title);
+       book.setAuthor(author);
+       SearchBookService service=new SearchBookService();
+       service.search(book);
+       bookList=service.getSearcBookList();
+        request.setAttribute("searchedBook", bookList);
         RequestDispatcher view = request
                 .getRequestDispatcher("SearchDisplayResult.jsp");
         view.forward(request, response);
     }
 
-    private List<Book> getSearchedBook(Book book) {
-        SearchBookService bookService = new SearchBookService();
-        bookService.search(book);
-        List<Book> bookList = new ArrayList<Book>();
-        bookList = bookService.getSearcBookList();
-        return bookList;
-    }
+   
 
 }

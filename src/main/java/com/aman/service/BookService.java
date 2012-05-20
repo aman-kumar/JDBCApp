@@ -19,4 +19,10 @@ public class BookService {
     public List<Book> getList() {
         return bookdao.listBook();
     }
+   // public void search(Book book){
+    //    bookdao.searchBook(book);
+    //}
+    //public List<Book> getSearchedBookList(){
+      //  return bookdao.listSearchedBook();
+    //}
 }
