@@ -69,7 +69,7 @@ public class BookDao {
                     book.setName(resultSet.getString("name"));
                     book.setAuthor(resultSet.getString("author"));
                   // book.setGenre(resultSet.getString("genre"));
-                    book.setPublisher(resultSet.getString("publisher"));
+                    book.setPublisher(resultSet.getString("publication"));
                     book.setDescription(resultSet.getString("description"));
                     //book.setCopies(resultSet.getInt("noOfCopies"));
 
@@ -97,7 +97,7 @@ public class BookDao {
         try {
             String author1 = book.getAuthor();
             String title = book.getName();
-            String query = "SELECT bookId,name,author,publisher,description from Book WHERE author =? and name=?";//where bookTitle="
+            String query = "SELECT bookId,name,author,publication,description from Book WHERE author =? and name=?";//where bookTitle="
                     //+ title + " and author= " + author  ;
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,book.getAuthor());
@@ -113,7 +113,7 @@ public class BookDao {
                 book1.setAuthor(resultSet.getString("author"));
               //  book1.setGenre(resultSet.getString("genre"));
                 book1.setDescription(resultSet.getString("description"));
-                book1.setPublisher(resultSet.getString("publisher"));
+                book1.setPublisher(resultSet.getString("publication"));
                 //book1.setCopies(resultSet.getInt("noOfCopies"));
                 searchBookList.add(book1);
             }
