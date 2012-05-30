@@ -52,11 +52,11 @@ public class SearchBookServlet extends HttpServlet {
 
     private void execute(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-       String title=request.getParameter("bookName");
-       String author=request.getParameter("authorName");
+       String name=request.getParameter("name");
+       String author=request.getParameter("author");
        List<Book> bookList=new ArrayList<Book>(); 
        Book book=new Book();
-       book.setTitle(title);
+       book.setName(name);
        book.setAuthor(author);
        SearchBookService service=new SearchBookService();
        service.search(book);

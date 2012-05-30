@@ -41,15 +41,15 @@ public class BookDao {
 
     private PreparedStatement populateCreateBookStatement(Book book,
             Connection con) throws SQLException {
-        String query = "INSERT into bookdetails values(?,?,?,?,?,?)";
+        String query = "INSERT into Book values(?,?,?,?,?)";
 
         PreparedStatement statement = con.prepareStatement(query);
-        statement.setString(1, book.getTitle());
-        statement.setString(2, book.getAuthor());
-        statement.setString(3, book.getGenre());
-        statement.setString(4, book.getDescription());
-        statement.setString(5, book.getPublisher());
-        statement.setInt(6, book.getCopies());
+        statement.setString(1, book.getbookId());
+        statement.setString(2, book.getName());
+        statement.setString(3, book.getAuthor());
+        statement.setString(4, book.getPublisher());
+        statement.setString(5, book.getDescription());
+        //statement.setInt(6, book.getCopies());
         return statement;
     }
 
@@ -59,18 +59,19 @@ public class BookDao {
         List<Book> bookList = new ArrayList<Book>();
         try {
 
-            String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails";
+            String query = "SELECT * from Book";//bookTitle,author,genre,book_description,publisher,noOfCopies
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 while (resultSet.next()) {
                     Book book = new Book();
-                    book.setTitle(resultSet.getString("bookTitle"));
+                    book.setbookId(resultSet.getString("bookId"));
+                    book.setName(resultSet.getString("name"));
                     book.setAuthor(resultSet.getString("author"));
-                    book.setGenre(resultSet.getString("genre"));
+                  // book.setGenre(resultSet.getString("genre"));
                     book.setPublisher(resultSet.getString("publisher"));
-                    book.setDescription(resultSet.getString("book_description"));
-                    book.setCopies(resultSet.getInt("noOfCopies"));
+                    book.setDescription(resultSet.getString("description"));
+                    //book.setCopies(resultSet.getInt("noOfCopies"));
 
                     bookList.add(book);
 
@@ -95,24 +96,25 @@ public class BookDao {
         Connection con = ConnectionUtils.getConnection();
         try {
             String author1 = book.getAuthor();
-            String title = book.getTitle();
-            String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails WHERE author =? and bookTitle=?";//where bookTitle="
+            String title = book.getName();
+            String query = "SELECT bookId,name,author,publisher,description from Book WHERE author =? and name=?";//where bookTitle="
                     //+ title + " and author= " + author  ;
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,book.getAuthor());
-            statement.setString(2, book.getTitle());
+            statement.setString(2, book.getName());
             ResultSet resultSet = statement.executeQuery();
             boolean bookPresenceStatus = true;
 
             while (resultSet.next()) {
                 bookPresenceStatus = false;
                 Book book1 = new Book();
-                book1.setTitle(resultSet.getString("bookTitle"));
+                book1.setbookId(resultSet.getString("bookId"));
+                book1.setName(resultSet.getString("name"));
                 book1.setAuthor(resultSet.getString("author"));
-                book1.setGenre(resultSet.getString("genre"));
-                book1.setDescription(resultSet.getString("book_description"));
+              //  book1.setGenre(resultSet.getString("genre"));
+                book1.setDescription(resultSet.getString("description"));
                 book1.setPublisher(resultSet.getString("publisher"));
-                book1.setCopies(resultSet.getInt("noOfCopies"));
+                //book1.setCopies(resultSet.getInt("noOfCopies"));
                 searchBookList.add(book1);
             }
         } catch (Exception ex) {

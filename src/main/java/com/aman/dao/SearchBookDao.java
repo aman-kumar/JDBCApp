@@ -20,7 +20,7 @@ public class SearchBookDao {
         Connection con = ConnectionUtils.getConnection();
 
        // String query = "SELECT bookTitle,author,genre,book_description,publisher,noOfCopies from bookdetails where bookTitle = "+book.getTitle() ;
-        String query="select * from bookdetails ";
+        String query="select * from Book ";
         try {
             searchingBook(book, con, query);
         } catch (SQLException ex) {
@@ -43,12 +43,13 @@ public class SearchBookDao {
         boolean searchResult = true;
         while (resultset.next()) {
             searchResult = false;
-            book1.setTitle(resultset.getString("bookTitle"));
+            book1.setbookId(resultset.getString("bookId"));
+            book1.setName(resultset.getString("name"));
             book1.setAuthor(resultset.getString("author"));
-            book1.setGenre(resultset.getString("genre"));
-            book1.setDescription(resultset.getString("book_description"));
+            //book1.setGenre(resultset.getString("genre"));
+            book1.setDescription(resultset.getString("description"));
             book1.setPublisher(resultset.getString("publisher"));
-            book1.setCopies(resultset.getInt("noOfCopies"));
+            //book1.setCopies(resultset.getInt("noOfCopies"));
         }
 
         if (searchResult) {

@@ -65,11 +65,12 @@ public class BookServlet extends HttpServlet {
     private Book populateBook(HttpServletRequest request) {
         Book book = new Book();
         book.setAuthor(request.getParameter("author"));
-        book.setTitle(request.getParameter("title"));
-        book.setCopies(Integer.parseInt(request.getParameter("copies")));
+        book.setName(request.getParameter("title"));
+        //book.setCopies(Integer.parseInt(request.getParameter("copies")));
         book.setDescription(request.getParameter("description"));
-        book.setGenre(request.getParameter("genre"));
+        //book.setGenre(request.getParameter("genre"));
         book.setPublisher(request.getParameter("publisher"));
+        book.setbookId(request.getParameter("bookId"));
         return book;
     }
 

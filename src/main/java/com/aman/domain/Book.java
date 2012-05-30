@@ -1,19 +1,19 @@
 package com.aman.domain;
 
 public class Book {
-    private String title;
+    private String name;
     private String author;
-    private String genre;
+    private String bookId;
     private String description;
     private String publisher;
-    private int copies;
+    //private int copies;
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAuthor() {
@@ -24,12 +24,12 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getbookId() {
+        return bookId;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setbookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public String getDescription() {
@@ -48,17 +48,18 @@ public class Book {
         return publisher;
     }
 
-    public int getCopies() {
-        return copies;
-    }
+    //public int getCopies() {
+      //  return copies;
+    //}
 
-    public void setCopies(int copies) {
+    /*public void setCopies(int copies) {
         this.copies = copies;
-    }
+    } */
 
-    public void setCopies(String copies) {
+    /*public void setCopies(String copies) {
         // TODO Auto-generated method stub
         this.copies = Integer.parseInt(copies);
     }
+    */
 
 }

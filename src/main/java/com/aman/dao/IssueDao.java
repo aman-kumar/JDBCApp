@@ -74,7 +74,7 @@ public class IssueDao {
             throws SQLException {
         PreparedStatement statement = con.prepareStatement(query);
 
-        statement.setString(1, book1.getTitle());
+        statement.setString(1, book1.getName());
         statement.setString(2, book1.getAuthor());
         statement.setString(3, book1.getDescription());
         statement.setString(4, book1.getPublisher());
@@ -83,23 +83,23 @@ public class IssueDao {
         statement.setString(7, student1.getEmailId());
         statement.setInt(8, student1.getPhoneNumber());
         statement.setString(9, student1.getAddress());
-        statement.setString(10, book1.getGenre());
-        int bookCopies = book1.getCopies();
-        if (bookCopies > 0) {
-            bookCopies = bookCopies - 1;
+        //statement.setString(10, book1.getGenre());
+        //int bookCopies = book1.getCopies();
+        //if (bookCopies > 0) {
+          //  bookCopies = bookCopies - 1;
         }
         Book book2 = new Book();
-        book2.setCopies(bookCopies);
+        //book2.setCopies(bookCopies);
 
         String query1 = "UPDATE bookdetails set noOfCopies=? where bookTitle=?"
               ;
         //+ book2.getCopies() + " where bookTitle= "
           //      + book1.getTitle();
-        PreparedStatement statement1 = con.prepareStatement(query1);
-        statement1.setInt(1, book2.getCopies());
-        statement1.setString(2, book1.getTitle());
-        statement1.executeUpdate();
-    }
+        //PreparedStatement statement1 = con.prepareStatement(query1);
+        //statement1.setInt(1, book2.getCopies());
+        //statement1.setString(2, book1.getName());
+        //statement1.executeUpdate();
+    
 
     public List<Book> listBook() {
         List<Book> bookList = new ArrayList<Book>();
