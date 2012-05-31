@@ -1,11 +1,20 @@
 package com.aman.domain;
 
 public class Student {
+    private String studentId;
     private String firstName;
-    private String lastName;
+    private String lastName;// studentId,firstName,lastName,address,phoneNumber,email
     private String emailId;
     private String address;
     private int phoneNumber;
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 
     public String getFirstName() {
         return firstName;

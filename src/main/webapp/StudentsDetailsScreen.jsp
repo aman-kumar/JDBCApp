@@ -18,6 +18,7 @@ List<Student> studentList=new ArrayList<Student>();
 	<h4>Students details</h4>
 	</caption>
 	<tr>
+	    <th width="15%">ID</th>
 		<th width="15%">First Name</th>
 		<th width="15%">Last Name</th>
 		<th width="15%">Email Id</th>
@@ -29,13 +30,15 @@ List<Student> studentList=new ArrayList<Student>();
 	studentList=(ArrayList<Student>)request.getAttribute("student");
 	Iterator itr=studentList.iterator();
 	while(itr.hasNext()){
+	    Student student=(Student)itr.next();
 	%>
 	<tr>
-	<td width="15%"><%=studentList.get(1).getFirstName()  %></td>
-		<td width="15%"><%=studentList.get(1).getLastName()%></td>
-		<td width="15%"><%=studentList.get(1).getEmailId()  %></td>
-		<td width="15%"><%=studentList.get(1).getAddress()%></td>
-		<td width="15%"><%=studentList.get(1).getPhoneNumber()%></td>  
+	<td width="15%"><%=student.getStudentId()  %></td>
+	<td width="15%"><%=student.getFirstName()  %></td>
+		<td width="15%"><%=student.getLastName()%></td>
+		<td width="15%"><%=student.getEmailId()  %></td>
+		<td width="15%"><%=student.getAddress()%></td>
+		<td width="15%"><%=student.getPhoneNumber()%></td>  
 	</tr>
 	<%
 	}

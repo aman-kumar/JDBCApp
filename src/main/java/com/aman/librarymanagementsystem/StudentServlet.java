@@ -56,13 +56,14 @@ public class StudentServlet extends HttpServlet {
         studentService.create(student);
         List<Student> studentList = new ArrayList<Student>();
         studentList = studentService.getList();
-       // request.setAttribute("student", studentList);
-        //RequestDispatcher view = request
-          //      .getRequestDispatcher("StudentsDetailsScreen.jsp");
-        //view.forward(request, response);
+        request.setAttribute("student", studentList);
+        RequestDispatcher view = request
+                .getRequestDispatcher("StudentsDetailsScreen.jsp");
+        view.forward(request, response);
     }
 
     private void populateStudent(HttpServletRequest request, Student student) {
+        student.setStudentId(request.getParameter("studentId"));
         student.setFirstName(request.getParameter("firstName"));
         student.setLastName(request.getParameter("lastName"));
         student.setEmailId(request.getParameter("emailId"));

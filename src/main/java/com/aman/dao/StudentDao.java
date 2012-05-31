@@ -37,13 +37,14 @@ public class StudentDao {
 
     private PreparedStatement createStudent(Student student)
             throws SQLException {
-        String query = "INSERT into studentdetails values(?,?,?,?,?)";
+        String query = "INSERT into Student values(?,?,?,?,?,?)";
         PreparedStatement statement = con.prepareStatement(query);
-        statement.setString(1, student.getFirstName());
-        statement.setString(2, student.getLastName());
-        statement.setString(3, student.getEmailId());
+        statement.setString(1, student.getStudentId());
+        statement.setString(2, student.getFirstName());
+        statement.setString(3, student.getLastName());
         statement.setString(4, student.getAddress());
         statement.setInt(5, student.getPhoneNumber());
+        statement.setString(6, student.getEmailId());
         return statement;
     }
 
@@ -59,13 +60,14 @@ public class StudentDao {
 
     private List<Student> getStudentList() throws SQLException {
         Student student = new Student();
-        String querry = "SELECT firstName,lastName,emailId,address,phoneNumber from studentdetails";
+        String querry = "SELECT studentId,firstName,lastName,email,address,phoneNumber from Student";
         PreparedStatement statement = con.prepareStatement(querry);
         ResultSet resultset = statement.executeQuery();
         while (resultset.next()) {
+            student.setStudentId(resultset.getString("studentId"));
             student.setFirstName(resultset.getString("firstName"));
             student.setLastName(resultset.getString("lastName"));
-            student.setEmailId(resultset.getString("emailId"));
+            student.setEmailId(resultset.getString("email"));
             student.setAddress(resultset.getString("address"));
             student.setPhoneNumber(resultset.getInt("phoneNumber"));
         }
