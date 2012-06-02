@@ -50,9 +50,10 @@ public class StudentServlet extends HttpServlet {
 
     private void execute(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        Student student = new Student();
-        populateStudent(request, student);
+        
+        populateStudent(request);
         StudentService studentService = new StudentService();
+        Student student=populateStudent(request);
         studentService.create(student);
         List<Student> studentList = new ArrayList<Student>();
         studentList = studentService.getList();
@@ -62,13 +63,15 @@ public class StudentServlet extends HttpServlet {
         view.forward(request, response);
     }
 
-    private void populateStudent(HttpServletRequest request, Student student) {
+    private Student populateStudent(HttpServletRequest request) {
+        Student student = new Student();
         student.setStudentId(request.getParameter("studentId"));
         student.setFirstName(request.getParameter("firstName"));
         student.setLastName(request.getParameter("lastName"));
         student.setEmailId(request.getParameter("emailId"));
         student.setAddress(request.getParameter("address"));
         student.setPhoneNumber(request.getParameter("phoneNumber"));
+    return student;
     }
 
 }

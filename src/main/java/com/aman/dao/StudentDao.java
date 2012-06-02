@@ -59,20 +59,23 @@ public class StudentDao {
     }
 
     private List<Student> getStudentList() throws SQLException {
-        Student student = new Student();
+        List<Student> studentList = new ArrayList<Student>();
+        
         String querry = "SELECT studentId,firstName,lastName,email,address,phoneNumber from Student";
         PreparedStatement statement = con.prepareStatement(querry);
         ResultSet resultset = statement.executeQuery();
+
         while (resultset.next()) {
+            Student student = new Student();
             student.setStudentId(resultset.getString("studentId"));
             student.setFirstName(resultset.getString("firstName"));
             student.setLastName(resultset.getString("lastName"));
             student.setEmailId(resultset.getString("email"));
             student.setAddress(resultset.getString("address"));
             student.setPhoneNumber(resultset.getInt("phoneNumber"));
+            studentList.add(student);
         }
-        List<Student> studentList = new ArrayList<Student>();
-        studentList.add(student);
+
         return studentList;
     }
 }
