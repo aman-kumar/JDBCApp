@@ -41,7 +41,7 @@ public class BookDao {
 
     private PreparedStatement populateCreateBookStatement(Book book,
             Connection con) throws SQLException {
-        String query = "INSERT into Book values(?,?,?,?,?)";
+        String query = "INSERT into Book values(?,?,?,?,?,?)";
 
         PreparedStatement statement = con.prepareStatement(query);
         statement.setString(1, book.getbookId());
@@ -49,7 +49,7 @@ public class BookDao {
         statement.setString(3, book.getAuthor());
         statement.setString(4, book.getPublisher());
         statement.setString(5, book.getDescription());
-        //statement.setInt(6, book.getCopies());
+        statement.setInt(6, book.getCopies());
         return statement;
     }
 
@@ -71,7 +71,7 @@ public class BookDao {
                   // book.setGenre(resultSet.getString("genre"));
                     book.setPublisher(resultSet.getString("publication"));
                     book.setDescription(resultSet.getString("description"));
-                    //book.setCopies(resultSet.getInt("noOfCopies"));
+                    book.setCopies(resultSet.getInt("noOfCopies"));
 
                     bookList.add(book);
 
@@ -97,7 +97,7 @@ public class BookDao {
         try {
             String author1 = book.getAuthor();
             String title = book.getName();
-            String query = "SELECT bookId,name,author,publication,description from Book WHERE author =? and name=?";//where bookTitle="
+            String query = "SELECT bookId,name,author,publication,description,noOfCopies from Book WHERE author =? and name=?";//where bookTitle="
                     //+ title + " and author= " + author  ;
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,book.getAuthor());
@@ -114,7 +114,7 @@ public class BookDao {
               //  book1.setGenre(resultSet.getString("genre"));
                 book1.setDescription(resultSet.getString("description"));
                 book1.setPublisher(resultSet.getString("publication"));
-                //book1.setCopies(resultSet.getInt("noOfCopies"));
+                book1.setCopies(resultSet.getInt("noOfCopies"));
                 searchBookList.add(book1);
             }
         } catch (Exception ex) {

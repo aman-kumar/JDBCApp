@@ -35,9 +35,9 @@ while(itr.hasNext()){
 %>
 	
 		<tr>
-		<td width="15%"><%=book.getTitle() %></td>
+		
 		<td width="15%"><%=book.getAuthor()%></td>
-		<td width="15%"><%=book.getGenre()%></td>
+		
 		<td width="15%"><%=book.getDescription()%></td>
 		<td width="15%"><%=book.getPublisher()%></td>
 		<td width="15%"><%=book.getCopies()%></td>

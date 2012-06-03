@@ -89,4 +89,14 @@
     <servlet-name>IssueServlet</servlet-name>
     <url-pattern>/IssueServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordEntry</display-name>
+    <servlet-name>RecordEntry</servlet-name>
+    <servlet-class>com.aman.librarymanagementsystem.RecordEntry</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordEntry</servlet-name>
+    <url-pattern>/RecordEntry</url-pattern>
+  </servlet-mapping>
 </web-app>

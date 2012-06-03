@@ -6,7 +6,7 @@ public class Book {
     private String bookId;
     private String description;
     private String publisher;
-    //private int copies;
+    private int copies;
 
     public String getName() {
         return name;
@@ -48,18 +48,17 @@ public class Book {
         return publisher;
     }
 
-    //public int getCopies() {
-      //  return copies;
-    //}
+    public int getCopies() {
+        return copies;
+    }
 
-    /*public void setCopies(int copies) {
+    public void setCopies(int copies) {
         this.copies = copies;
-    } */
+    }
 
-    /*public void setCopies(String copies) {
+    public void setCopies(String copies) {
         // TODO Auto-generated method stub
         this.copies = Integer.parseInt(copies);
     }
-    */
 
 }
