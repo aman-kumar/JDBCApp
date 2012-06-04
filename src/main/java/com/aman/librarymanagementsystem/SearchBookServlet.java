@@ -19,54 +19,52 @@ import com.aman.service.SearchBookService;
  * Servlet implementation class SearchBookDisplay
  */
 public class SearchBookServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 
-    ResultSet rst;
+	ResultSet rst;
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        execute(request, response);
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		execute(request, response);
+	}
 
-    // populate the object with the incoming -->call service --> send the
-    // response to the view
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+	// populate the object with the incoming -->call service --> send the
+	// response to the view
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
-        execute(request, response);
-    }
+		execute(request, response);
+	}
 
-    private void execute(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-       String name=request.getParameter("name");
-       String author=request.getParameter("author");
-       List<Book> bookList=new ArrayList<Book>(); 
-       Book book=new Book();
-       book.setName(name);
-       book.setAuthor(author);
-       SearchBookService service=new SearchBookService();
-       service.search(book);
-       bookList=service.getSearcBookList();
-        request.setAttribute("searchedBook", bookList);
-        RequestDispatcher view = request
-                .getRequestDispatcher("SearchDisplayResult.jsp");
-        view.forward(request, response);
-    }
-
-   
+	private void execute(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String author = request.getParameter("author");
+		List<Book> bookList = new ArrayList<Book>();
+		Book book = new Book();
+		book.setName(name);
+		book.setAuthor(author);
+		SearchBookService service = new SearchBookService();
+		service.search(book);
+		// bookList=service.getSearcBookList();
+		request.setAttribute("searchedBook", bookList);
+		RequestDispatcher view = request
+				.getRequestDispatcher("SearchDisplayResult.jsp");
+		view.forward(request, response);
+	}
 
 }

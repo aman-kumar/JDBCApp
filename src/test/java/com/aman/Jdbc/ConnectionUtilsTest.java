@@ -1,4 +1,4 @@
-package com.aman.jdbc;
+package com.aman.Jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;

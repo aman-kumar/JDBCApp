@@ -16,7 +16,7 @@ SearchBookDao searchBookDao;
     }
     public void book(){
     //searchBookDao.getSearchedBook();
-    issueDao.createBook(searchBookDao.getSearchedBook());
+   // issueDao.createBook(searchBookDao.getSearchedBook());
     }
     public void issueBook(){
         issueDao.issue();
