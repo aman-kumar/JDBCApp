@@ -42,7 +42,7 @@ public class IssueServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	execute(request, response);
 	}
-
+// search student,get it's studentId,then out that Id in BookRecord and change the status of the book to "issued"
     private void execute(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         List<Book> bookList;
@@ -50,8 +50,11 @@ public class IssueServlet extends HttpServlet {
             Student student=new Student();
         student.setFirstName(request.getParameter("firstName"));
         student.setLastName(request.getParameter("lastName"));
+        
 IssueService service=new IssueService();	
-        service.book();
+// searchStudent
+
+service.book();
         service.createStudent(student);
         service.issueBook();
         bookList=service.getBookList();

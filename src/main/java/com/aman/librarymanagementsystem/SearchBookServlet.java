@@ -10,10 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.aman.domain.Book;
-import com.aman.service.BookService;
+import com.aman.domain.*;
 import com.aman.service.SearchBookService;
+
 
 /**
  * Servlet implementation class SearchBookDisplay
@@ -54,14 +53,18 @@ public class SearchBookServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String author = request.getParameter("author");
-		List<Book> bookList = new ArrayList<Book>();
-		Book book = new Book();
+		//Book book=new Book();
+		Book book=new Book();
 		book.setName(name);
 		book.setAuthor(author);
-		SearchBookService service = new SearchBookService();
+		SearchBookService service=new SearchBookService(); 
 		service.search(book);
+		service.setBookRecordList();
+		List<Record> recordList = new ArrayList<Record>();
+		recordList = service.getSearcRecordList();
+		service.recordForIssue(recordList);
 		// bookList=service.getSearcBookList();
-		request.setAttribute("searchedBook", bookList);
+		request.setAttribute("searchedBook", recordList);
 		RequestDispatcher view = request
 				.getRequestDispatcher("SearchDisplayResult.jsp");
 		view.forward(request, response);

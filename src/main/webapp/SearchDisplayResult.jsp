@@ -11,46 +11,41 @@
 <body>
 <%!
 int copies;
+String status;
 %>
 <table align="left" width="2" border="3" bordercolor="black">
 	<tr>
-	    <th width="15%">ID</th>
-		<th width="15%">Book</th>
-		<th width="15%">Author</th>
-		<th width="15%">Publisher</th>
-		<th width="15%">BookDescription</th>
-		
-		
-
+	    <th width="15%">BookRecordId</th>
+		<th width="15%">BookId</th>
+		<th width="15%">Status</th>
+		<th width="15%">StudentId</th>
 	</tr>
 	<% 
-List<Book> bookList=(ArrayList<Book>)request.getAttribute("searchedBook") ;				// pwm.println("The book has been located in the database");
-Iterator<Book> itr=bookList.iterator();
+List<Record> recordList=(ArrayList<Record>)request.getAttribute("searchedBook") ;				// pwm.println("The book has been located in the database");
+Iterator<Record> itr=recordList.iterator();
 while(itr.hasNext()){
-    Book book=(Book)itr.next();
+    Record  record=(Record)itr.next();
 %>
 	
 		<tr>
-		<td width="15%"><%=book.getbookId() %></td>
-		<td width="15%"><%=book.getName() %></td>
-		<td width="15%"><%=book.getAuthor()%></td>
-		<td width="15%"><%=book.getPublisher()%></td>
-		<td width="15%"><%=book.getDescription()%></td>
-
-		
+		<td width="15%"><%=record.getBookRecord() %></td>
+		<td width="15%"><%=record.getBookId() %></td>
+		<td width="15%"><%=record.getStatus() %></td>
+		<td width="15%"><%=record.getStudentId() %></td>
 	</tr>
 	
 
 	  
       <%
       //copies=book.getCopies();
+      status=record.getStatus();
     	}
 
 	%>
 	
 </table>
 <%
-if(copies>1){
+if(status == "available"){
 %>
 <br><br><br>
 The book can be issued<br><br>
