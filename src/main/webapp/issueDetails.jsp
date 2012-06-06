@@ -10,57 +10,35 @@
 </head>
 <body>
 
-<table align="left" width="2" border="3" bordercolor="black">
-	<tr>
-		<th width="15%">BookTitle</th>
-		<th width="15%">AuthorName</th>
-		<th width="15%">BookGenre</th>
-		<th width="15%">BookDescription</th>
-		<th width="15%">Publisher</th>
-		<th width="15%">CopiesOfBook</th>
-		<th width="15%">firstName</th>
-		<th width="15%">lastName</th>
-		<th width="15%">emailId</th>
-		<th width="15%">phoneNumber</th>
-		<th width="15%">address</th>
+<%!List<Record> recordList = new ArrayList<Record>();%>
 
-	</tr>
-	<% 
-List<Book> bookList=(ArrayList<Book>)request.getAttribute("book") ;
-	List<Student> studentList=(ArrayList<Student>)request.getAttribute("student");
-	Iterator<Student> itrStudent=studentList.iterator();
-Iterator<Book> itr=bookList.iterator();
-while(itr.hasNext()){
-    Book book=(Book)itr.next();
-%>
-	
+	<table border="2" bordercolor="black">
+		<caption>
+			<h4>BookRecord details</h4>
+		</caption>
 		<tr>
-		
-		<td width="15%"><%=book.getAuthor()%></td>
-		
-		<td width="15%"><%=book.getDescription()%></td>
-		<td width="15%"><%=book.getPublisher()%></td>
-		<td width="15%"><%=book.getCopies()%></td>
-	<%
-}
-while(itrStudent.hasNext()){
-    Student student=(Student)itrStudent.next();
-	%>
-	<td width="15%"><%=student.getFirstName()%> </td>
-	<td width="15%"><%=student.getLastName()%> </td>
-	<td width="15%"><%=student.getEmailId()%></td>
-	<td width="15%"><%=student.getAddress()%></td>
-	<td width="15%"><%=student.getPhoneNumber()%></td>
-	
-	
+			<th width="15%">ID</th>
+			<th width="15%">Book ID</th>
+			<th width="15%">Status</th>
+			<th width="15%">Student Id</th>
 		</tr>
-	
+		<%
+		    recordList = (ArrayList<Record>) request.getAttribute("record");
+		    Iterator itr = recordList.iterator();
+		    while (itr.hasNext()) {
+		        Record record = (Record) itr.next();
+		%>
+		<tr>
+			<td width="15%"><%=record.getBookRecord()%></td>
+			<td width="15%"><%=record.getBookId()%></td>
+			<td width="15%"><%=record.getStatus()%></td>
+			<td width="15%"><%=record.getStudentId()%></td>
+		</tr>
+		<%
+		    }
+		%>
+	</table>
 
-	<%
-}
-	%>  
-    	
-</table>
 <br><br><br>
 <br>
 <br>
