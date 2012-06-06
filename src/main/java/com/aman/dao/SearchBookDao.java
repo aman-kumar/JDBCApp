@@ -78,9 +78,10 @@ public class SearchBookDao {
 			Connection con = ConnectionUtils.getConnection();
 			try {
 
-				String query = "SELECT bookRecordId,bookId,status,studentId from BookRecord where bookId=? and status=available";
+				String query = "SELECT bookRecordId,bookId,status,studentId from BookRecord where bookId=? and status=?";
 				PreparedStatement statement = con.prepareStatement(query);
 				statement.setString(1, bookId);
+				statement.setString(2, "available");
 				ResultSet resultSet = statement.executeQuery();
 				while (resultSet.next()) {
 					Record record = new Record();

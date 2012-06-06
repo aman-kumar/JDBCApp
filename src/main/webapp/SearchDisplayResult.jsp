@@ -45,7 +45,7 @@ while(itr.hasNext()){
 	
 </table>
 <%
-if(status == "available"){
+if(status.equals("available") ){
 %>
 <br><br><br>
 The book can be issued<br><br>
