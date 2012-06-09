@@ -47,12 +47,10 @@ public class IssueDao {
 			} catch (Exception ex1) {
 				throw new IllegalStateException(ex1);
 			}
-			
 
 		}
 	}
 
-	
 	String bookRecordId;
 
 	List<Record> recordList = new ArrayList<Record>();
@@ -69,7 +67,7 @@ public class IssueDao {
 				Record record1 = new Record();
 				record1.setBookRecord(resultSet.getString("bookRecordId"));
 				record1.setBookId(resultSet.getString("bookId"));
-				record1.setStatus(resultSet.getString("status "));
+				record1.setStatus(resultSet.getString("status"));
 				record1.setStudentId(resultSet.getString("studentId"));
 				recordList.add(record1);
 			}
@@ -103,13 +101,13 @@ public class IssueDao {
 		}
 		bookRecordId = record2.getBookRecord();
 		Connection con = ConnectionUtils.getConnection();
-		String query = "UPDATE BookRecord set status=? and studentId=? where bookRecordId=? ";
+		String query = "UPDATE BookRecord set status=?,studentId=? where bookRecordId=? ";
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
-			statement.setString(1, "issued");
-			statement.setString(2, student2.getStudentId());
-			statement.setString(3, record2.getBookRecord());
-			ResultSet result = statement.executeQuery();
+			statement.setString(1,"issued");
+			statement.setString(2,student2.getStudentId());
+			statement.setString(3,record2.getBookRecord());
+			int result = statement.executeUpdate();
 		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		} finally {
@@ -143,4 +141,3 @@ public class IssueDao {
 		return recList;
 	}
 }
-
