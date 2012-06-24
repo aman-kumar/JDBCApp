@@ -99,4 +99,14 @@
     <servlet-name>RecordEntry</servlet-name>
     <url-pattern>/RecordEntry</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestHsql</display-name>
+    <servlet-name>TestHsql</servlet-name>
+    <servlet-class>com.aman.librarymanagementsystem.TestHsql</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestHsql</servlet-name>
+    <url-pattern>/TestHsql</url-pattern>
+  </servlet-mapping>
 </web-app>
