@@ -30,7 +30,7 @@ public class BookDao {
 			ex.printStackTrace();
 		} finally {
 			try {
-				// con.close();
+				con.close();
 			} catch (Exception ex1) {
 				throw new IllegalStateException(ex1);
 			}
