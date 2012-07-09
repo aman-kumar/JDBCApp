@@ -59,7 +59,7 @@ public class BookDao {
 		List<Book> bookList = new ArrayList<Book>();
 		try {
 
-			String query = "SELECT * from Book";// bookTitle,author,genre,book_description,publisher,noOfCopies
+			String query = "SELECT bookId,name,author,publication,description,noOfCopies from Book";// bookTitle,author,genre,book_description,publisher,noOfCopies
 			PreparedStatement statement = con.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -95,8 +95,7 @@ public class BookDao {
 	public void searchBook(Book book) {
 		Connection con = ConnectionUtils.getConnection();
 		try {
-			String author1 = book.getAuthor();
-			String title = book.getName();
+
 			String query = "SELECT bookId,name,author,publication,description,noOfCopies from Book WHERE author =? and name=?";// where
 																																// bookTitle="
 			// + title + " and author= " + author ;

@@ -20,10 +20,10 @@ public class IssueDao {
 
 	public void searchStudent(Student student) {
 		// TODO Auto-generated method stub
-		String fName = student.getFirstName();
-		String lName = student.getLastName();
+
 		Connection con = ConnectionUtils.getConnection();
-		String query = "SELECT * from Student where firstName=? and lastName=? ";
+
+		String query = "SELECT studentId,firstName,lastName,address,phoneNumber,email from Student where firstName=? and lastName=? ";
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, student.getFirstName());
@@ -58,7 +58,8 @@ public class IssueDao {
 	public void createRecord(Record record) {
 		// TODO Auto-generated method stub
 		Connection con = ConnectionUtils.getConnection();
-		String query = "SELECT * from BookRecord where bookRecordId =?";
+
+		String query = "SELECT bookRecordId,bookId,status,studentId from BookRecord where bookRecordId =?";
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, record.getBookRecord());
@@ -104,9 +105,9 @@ public class IssueDao {
 		String query = "UPDATE BookRecord set status=?,studentId=? where bookRecordId=? ";
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
-			statement.setString(1,"issued");
-			statement.setString(2,student2.getStudentId());
-			statement.setString(3,record2.getBookRecord());
+			statement.setString(1, "issued");
+			statement.setString(2, student2.getStudentId());
+			statement.setString(3, record2.getBookRecord());
 			int result = statement.executeUpdate();
 		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
@@ -123,7 +124,7 @@ public class IssueDao {
 
 	public List<Record> getRecord() {
 		Connection con = ConnectionUtils.getConnection();
-		String qury = "SELECT * from BookRecord";
+		String qury = "SELECT bookRecordId,bookId,status,studentId from BookRecord";
 		try {
 			PreparedStatement statement = con.prepareStatement(qury);
 			ResultSet resultSet = statement.executeQuery();
