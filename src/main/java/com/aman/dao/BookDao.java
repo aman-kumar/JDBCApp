@@ -11,6 +11,7 @@ import com.aman.Jdbc.ConnectionUtils;
 import com.aman.domain.Book;
 
 public class BookDao {
+	List<Book> searchBookList = new ArrayList<Book>();
 
 	public void createBook(Book book) {
 		Connection con = ConnectionUtils.getConnection();
@@ -90,9 +91,9 @@ public class BookDao {
 		return bookList;
 	}
 
-	List<Book> searchBookList = new ArrayList<Book>();
-
 	public void searchBook(Book book) {
+		List<Book> bookList = new ArrayList<Book>();
+
 		Connection con = ConnectionUtils.getConnection();
 		try {
 
@@ -115,7 +116,7 @@ public class BookDao {
 				book1.setDescription(resultSet.getString("description"));
 				book1.setPublisher(resultSet.getString("publication"));
 				book1.setCopies(resultSet.getInt("noOfCopies"));
-				searchBookList.add(book1);
+				bookList.add(book1);
 			}
 		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
@@ -128,10 +129,11 @@ public class BookDao {
 			}
 
 		}
-
+		searchBookList = bookList;
 	}
 
 	public List<Book> listSearchedBook() {
 		return searchBookList;
 	}
+
 }

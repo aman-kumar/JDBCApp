@@ -2,34 +2,38 @@ package com.aman.service;
 
 import java.util.List;
 
-import com.aman.dao.IssueDao;
-import com.aman.dao.SearchBookDao;
+import com.aman.dao.BookDao;
+import com.aman.dao.RecordDao;
 import com.aman.domain.Book;
 import com.aman.domain.Record;
 
 public class SearchBookService {
-	SearchBookDao searchBookDao;
-	IssueDao issueDao;
+
+	BookDao bookDao;
+	RecordDao recordDao;
 
 	public SearchBookService() {
-		searchBookDao = new SearchBookDao();
-		issueDao = new IssueDao();
+
+		bookDao = new BookDao();
+		recordDao = new RecordDao();
 	}
 
 	public void search(Book book) {
-		searchBookDao.SearchBook(book);
+		bookDao.searchBook(book);
 	}
 
+	List<Book> searchedBookList = bookDao.listSearchedBook();
+
 	public void setBookRecordList() {
-		searchBookDao.bookRecordList();
+		recordDao.bookRecordList(searchedBookList);
 	}
 
 	public List<Record> getSearcRecordList() {
-		return searchBookDao.getRecordList();
+		return recordDao.getRecordList();
 	}
 
 	public void recordForIssue(List<Record> recordList) {
 		// TODO Auto-generated method stub
-		//issueDao.setRecordForIssue(recordList);
+		// issueDao.setRecordForIssue(recordList);
 	}
 }

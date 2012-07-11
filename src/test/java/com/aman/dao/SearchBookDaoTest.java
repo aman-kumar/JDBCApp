@@ -17,7 +17,7 @@ import com.aman.domain.Book;
 import com.aman.domain.Record;
 
 public class SearchBookDaoTest {
-	SearchBookDao searchBookDao = new SearchBookDao();
+	//SearchBookDao searchBookDao = new SearchBookDao();
 	BookDao bookDao = new BookDao();
 	RecordDao recordDao = new RecordDao();
 
