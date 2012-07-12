@@ -11,6 +11,7 @@ import java.util.List;
 import com.aman.Jdbc.ConnectionUtils;
 import com.aman.domain.Book;
 import com.aman.domain.Record;
+import com.aman.domain.Student;
 
 public class RecordDao {
 
@@ -87,12 +88,12 @@ public class RecordDao {
 		}
 		return recordList;
 	}
-	
+
 	ArrayList<Record> recordList = new ArrayList<Record>();
 
 	public void bookRecordList(List<Book> searchedBookList) {
-		List<Book> bookList=new ArrayList<Book>();
-		bookList=searchedBookList;
+		List<Book> bookList = new ArrayList<Book>();
+		bookList = searchedBookList;
 		ArrayList<Book> list = (ArrayList<Book>) bookList;
 		Iterator<Book> itr = list.iterator();
 		while (itr.hasNext()) {
@@ -126,9 +127,104 @@ public class RecordDao {
 		}
 
 	}
+
 	public List<Record> getRecordList() {
 		return recordList;
 	}
 
+	List<Record> searchedRecordList = new ArrayList<Record>();
+
+	// change the name in the issue Service for createRecord to
+	// createSearchBookRecord
+	public void createSearchRecord(Record record) {
+		// TODO Auto-generated method stub
+		List<Record> recordList1 = new ArrayList<Record>();
+		Connection con = ConnectionUtils.getConnection();
+
+		String query = "SELECT bookRecordId,bookId,status,studentId from BookRecord where bookRecordId =?";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setString(1, record.getBookRecord());
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Record record1 = new Record();
+				record1.setBookRecord(resultSet.getString("bookRecordId"));
+				record1.setBookId(resultSet.getString("bookId"));
+				record1.setStatus(resultSet.getString("status"));
+				record1.setStudentId(resultSet.getString("studentId"));
+				recordList1.add(record1);
+			}
+		} catch (Exception ex) {
+			throw new IllegalStateException(ex);
+		} finally {
+			try {
+				con.close();
+			} catch (Exception ex1) {
+				throw new IllegalStateException(ex1);
+			}
+		}
+		searchedRecordList = recordList1;
+	}
+
+	public List<Record> getSearchedRecordList() {
+		return searchedRecordList;
+	}
+
+	// update Record will take the two arguemts one as the StudentList and other
+	// one is the RecordList recordList1
+	public void updateRecord(List<Student> studentList, List<Record> recordList) {
+		Student student2 = new Student();
+		Record record2 = new Record();
+		String studentid;
+		Iterator<Student> itr = studentList.iterator();
+		while (itr.hasNext()) {
+			student2 = (Student) itr.next();
+		}
+		studentid = student2.getStudentId();
+		String bookRecordId;
+		Iterator<Record> itr1 = recordList.iterator();
+		while (itr1.hasNext()) {
+			record2 = (Record) itr1.next();
+		}
+		bookRecordId = record2.getBookRecord();
+		Connection con = ConnectionUtils.getConnection();
+		String query = "UPDATE BookRecord set status=?,studentId=? where bookRecordId=? ";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setString(1, "issued");
+			statement.setString(2, student2.getStudentId());
+			statement.setString(3, record2.getBookRecord());
+			int result = statement.executeUpdate();
+		} catch (Exception ex) {
+			throw new IllegalStateException(ex);
+		} finally {
+			try {
+				con.close();
+			} catch (Exception ex1) {
+				throw new IllegalStateException(ex1);
+			}
+		}
+	}
+
+	public List<Record> getRecord() {
+		List<Record> recList = new ArrayList<Record>();
+		Connection con = ConnectionUtils.getConnection();
+		String qury = "SELECT bookRecordId,bookId,status,studentId from BookRecord";
+		try {
+			PreparedStatement statement = con.prepareStatement(qury);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Record rec = new Record();
+				rec.setBookRecord(resultSet.getString("bookRecordId"));
+				rec.setBookId(resultSet.getString("bookId"));
+				rec.setStatus(resultSet.getString("status"));
+				rec.setStudentId(resultSet.getString("studentId"));
+				recList.add(rec);
+			}
+		} catch (Exception ec) {
+			throw new IllegalStateException(ec);
+		}
+		return recList;
+	}
 
 }

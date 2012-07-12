@@ -12,6 +12,7 @@ import com.aman.domain.Student;
 
 public class StudentDao {
     Connection con = null;
+    List<Student> searchedStudentList=new ArrayList<Student>();
 
     public void create(Student student) {
         con = ConnectionUtils.getConnection();
@@ -78,4 +79,43 @@ public class StudentDao {
 
         return studentList;
     }
+
+
+	public void searchStudent(Student student) {
+		// TODO Auto-generated method stub
+	    List<Student> studentList = new ArrayList<Student>();
+		Connection con = ConnectionUtils.getConnection();
+
+		String query = "SELECT studentId,firstName,lastName,address,phoneNumber,email from Student where firstName=? and lastName=? ";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setString(1, student.getFirstName());
+			statement.setString(2, student.getLastName());
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Student student1 = new Student();
+				student1.setFirstName(resultSet.getString("firstName"));
+				student1.setLastName(resultSet.getString("lastName"));
+				student1.setStudentId(resultSet.getString("studentId"));
+				student1.setAddress(resultSet.getString("address"));
+				student1.setEmailId(resultSet.getString("email"));
+				student1.setPhoneNumber(resultSet.getInt("phoneNumber"));
+				studentList.add(student1);
+			}
+		} catch (Exception ex) {
+			throw new IllegalStateException(ex);
+		} finally {
+			try {
+				con.close();
+			} catch (Exception ex1) {
+				throw new IllegalStateException(ex1);
+			}
+
+		}
+		searchedStudentList=studentList;
+	}
+	// now i will return this 
+public List<Student> getSearchStudent(){
+	return searchedStudentList;
+} 
 }
