@@ -73,8 +73,7 @@ public class BookDaoTest {
 		book3.setCopies(1);
 		book3.setDescription("Must read for the Java developer");
 		book3.setPublisher("OReilly");
-		bookDao.createBook(book3);
-		// when
+		bookDao.createBook(book3); // when
 		List<Book> bookList = new ArrayList<Book>();
 		bookList = bookDao.listBook();
 		// then
@@ -82,7 +81,7 @@ public class BookDaoTest {
 		PreparedStatement statement;
 		try {
 			statement = con.prepareStatement("select count(*) from book");
-			String query = "select count(*) from book";
+
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Assert.assertEquals(3, result.getInt(1));
@@ -92,9 +91,10 @@ public class BookDaoTest {
 			ex.printStackTrace();
 		} finally {
 			try {
+
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch
 				e.printStackTrace();
 			}
 		}
@@ -104,14 +104,14 @@ public class BookDaoTest {
 	@Test
 	public void testSearchBook() {
 
-		Book book = new Book();
-		book.setAuthor("Joshua Bloch");
-		book.setbookId("book4");
-		book.setCopies(1);
-		book.setDescription("Must read for evry Java developer");
-		book.setName("Effective Java");
-		book.setPublisher("Sun Microsystem");
-		bookDao.createBook(book);
+		Book book4 = new Book();
+		book4.setAuthor("Joshua Bloch");
+		book4.setbookId("book4");
+		book4.setCopies(1);
+		book4.setDescription("Must read for evry Java developer");
+		book4.setName("Effective Java");
+		book4.setPublisher("Sun Microsystem");
+		bookDao.createBook(book4);
 
 		Book book1 = new Book();
 		book1.setAuthor("Joshua Bloch");
@@ -122,20 +122,21 @@ public class BookDaoTest {
 		book1.setPublisher("Sun Microsystem");
 		bookDao.createBook(book1);
 
-		Book book2 = new Book();
-		book2.setName("Effective Java");
-		book2.setAuthor("Joshua Bloch");
+		Book book5 = new Book();
+		book5.setName("Effective Java");
+		book5.setAuthor("Joshua Bloch");
 		// then
+
 		Connection con = ConnectionUtils.getConnection();
 		PreparedStatement statement;
 		try {
 			statement = con
 					.prepareStatement("select count(*) from Book where name=? and author=?");
-			statement.setString(1, book2.getName());
-			statement.setString(2, book2.getAuthor());
+			statement.setString(1, book5.getName());
+			statement.setString(2, book5.getAuthor());
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				assertEquals(2, result.getInt(1));
+				assertEquals(3, result.getInt(1));
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -151,30 +152,29 @@ public class BookDaoTest {
 
 	@Test
 	public void testListSearchedBook() {
-		Book book = new Book();
-		book.setAuthor("Joshua Bloch");
-		book.setbookId("book6");
-		book.setCopies(1);
-		book.setDescription("Must read for evry Java developer");
-		book.setName("Effective Java");
-		book.setPublisher("Sun Microsystem");
-		bookDao.createBook(book);
+		Book book6 = new Book();
+		book6.setAuthor("Joshua Bloch");
+		book6.setbookId("book6");
+		book6.setCopies(1);
+		book6.setDescription("Must read for evry Java developer");
+		book6.setName("Effective Java");
+		book6.setPublisher("Sun Microsystem");
+		bookDao.createBook(book6);
 
-		Book book1 = new Book();
-		book1.setAuthor("Joshua Bloch");
-		book1.setbookId("book6");
-		book1.setCopies(1);
-		book1.setDescription("Must read for evry Java developer");
-		book1.setName("Effective Java");
-		book1.setPublisher("Sun Microsystem");
-		bookDao.createBook(book1);
+		Book book7 = new Book();
+		book7.setAuthor("Joshua Bloch");
+		book7.setbookId("book7");
+		book7.setCopies(1);
+		book7.setDescription("Must read for evry Java developer");
+		book7.setName("Effective Java");
+		book7.setPublisher("Sun Microsystem");
+		bookDao.createBook(book7);
 
-		Book book2 = new Book();
-		book2.setName("Effective Java");
-		book2.setAuthor("Joshua Bloch");
-		bookDao.searchBook(book2);
-		assertEquals(2, bookDao.listSearchedBook());
-
+		Book book8 = new Book();
+		book8.setName("Effective Java");
+		book8.setAuthor("Joshua Bloch");
+		bookDao.searchBook(book8);
+		assertEquals(5, bookDao.listSearchedBook().size());
 	}
 
 	@AfterClass
