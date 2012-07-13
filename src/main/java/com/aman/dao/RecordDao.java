@@ -58,7 +58,7 @@ public class RecordDao {
 	public List<Record> listRecord() {
 		Connection con = ConnectionUtils.getConnection();
 
-		List<Record> recordList = new ArrayList<Record>();
+		List<Record> recordList1 = new ArrayList<Record>();
 		try {
 
 			String query = "SELECT bookRecordId,bookId,status,studentId from BookRecord";
@@ -72,7 +72,7 @@ public class RecordDao {
 					record.setStatus(resultSet.getString("status"));
 					record.setStudentId(resultSet.getString("studentId"));
 
-					recordList.add(record);
+					recordList1.add(record);
 
 				}
 
@@ -86,7 +86,7 @@ public class RecordDao {
 				throw new IllegalStateException(ex2);
 			}
 		}
-		return recordList;
+		return recordList1;
 	}
 
 	ArrayList<Record> recordList = new ArrayList<Record>();
