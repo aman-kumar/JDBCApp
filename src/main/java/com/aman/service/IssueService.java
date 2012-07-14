@@ -35,7 +35,7 @@ public class IssueService {
 	// now both above list will go as the argument to the to the update Record
 	public void updateRecord() {
 		recordDao.updateRecord(searchStudent, searchRecord);
-
+		
 	}
 
 	public List<Record> getUpdatedRecord() {

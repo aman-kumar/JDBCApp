@@ -15,11 +15,12 @@ import com.aman.Jdbc.ConnectionUtils;
 import com.aman.Jdbc.DbConfiguration;
 import com.aman.domain.Book;
 import com.aman.domain.Record;
+import com.aman.domain.Student;
 
 public class RecordDaoTest {
 	RecordDao recordDao = new RecordDao();
 	BookDao bookDao = new BookDao();
-
+    StudentDao studentDao=new StudentDao();
 	@BeforeClass
 	public static void setUp() throws Exception {
 		DbConfiguration.populateSqls();
@@ -141,25 +142,89 @@ public class RecordDaoTest {
 		}
 	}
 
-	
-	 @Test 
-	 public void testGetRecordList() { 
-	assertEquals(2,recordDao.listRecord().size()); 
-		 
-	 }
-	
+	@Test
+	public void testGetRecordList() {
+		assertEquals(2, recordDao.listRecord().size());
 
-	 @Test 
-	 public void testCreateSearchRecord() { 
-		 
-		
+	}
+
+	@Test
+	public void testCreateSearchRecord() {
+		// create the record --> enter it to the BookRecord-->
+		// createSearchRecord--> call getSearcchedRecordList --> compare it's
+		// size
+		Record record3 = new Record();
+		record3.setBookId("book8");
+		record3.setBookRecord("bookRecord4");
+		record3.setStatus("available");
+		record3.setStudentId("");
+		recordDao.createRecord(record3);
+		recordDao.createSearchRecord(record3);
+		assertEquals(1, recordDao.getSearchedRecordList().size());
+
+	}
+
+	@Test
+	public void testGetSearchedRecordList() {
+		Record record4 = new Record();
+		record4.setBookId("book8");
+		record4.setBookRecord("bookRecord5");
+		record4.setStatus("available");
+		record4.setStudentId("");
+		recordDao.createRecord(record4);
+		recordDao.createSearchRecord(record4);
+		assertEquals(1, recordDao.getSearchedRecordList().size());
+	}
+
+	
+	  @Test public void testUpdateRecord() { 
+		// create student--> add to the Student Table -->studentDao.searchStudent()-->studentDao.getSearchStudent()
+			//create Record --> add to the record Table -->createSearchRecord(record) --> recordDao.getSearchRecordList()
+			//recordDao.updateRecord(studentDao.getSearchStudent(),recordDao.getSearchRecordList());
+	//recordDao.getUpdatedRecord();
+		  Student student=new Student();
+			student.setFirstName("Aman");
+			student.setLastName("Kumar");
+			student.setAddress("Ghaziabad");
+			student.setEmailId("er.amankumar@gmail.com");
+			student.setPhoneNumber(9999);
+			student.setStudentId("student5");
+			studentDao.create(student);
+		  studentDao.searchStudent(student);
+		  Record record5=new Record();
+		  record5.setBookId("book8");
+			record5.setBookRecord("bookRecord6");
+			record5.setStatus("available");
+			record5.setStudentId("");
+			recordDao.createRecord(record5);
+			recordDao.createSearchRecord(record5);
+			recordDao.updateRecord(studentDao.getSearchStudent(), recordDao.getSearchedRecordList());
+			Connection con=ConnectionUtils.getConnection();
+			PreparedStatement statement;
+			try {
+				statement = con.prepareStatement("select bookRecordId,bookId,status,studentId from BookRecord where bookRecordId=?");
+				statement.setString(1,"bookRecord6");
+				ResultSet result = statement.executeQuery();
+				while (result.next()) {
+			assertEquals("bookRecord6",result.getString("bookRecordId"));
+			assertEquals("issued",result.getString("status"));
+			assertEquals("student5",result.getString("studentId"));
+			assertEquals("book8",result.getString("bookId"));
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+
+			} finally {
+				try {
+					con.close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		  
 	  }
-	 /* 	 * 
-	 * @Test public void testGetSearchedRecordList() {
-	 * fail("Not yet implemented"); }
-	 * 
-	 * @Test public void testUpdateRecord() { fail("Not yet implemented"); }
-	 * 
+	  
+	 /* 
 	 * @Test public void testGetRecord() { fail("Not yet implemented"); }
 	 */
 	@AfterClass
