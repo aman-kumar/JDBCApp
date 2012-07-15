@@ -15,5 +15,7 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/Users/amankumar/Downloads/mockito-all-1.9.5-rc1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

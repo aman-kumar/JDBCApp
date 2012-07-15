@@ -31,6 +31,7 @@ public class IssueService {
 	}
 
 	List<Record> searchRecord = recordDao.getSearchedRecordList();
+	
 
 	// now both above list will go as the argument to the to the update Record
 	public void updateRecord() {
