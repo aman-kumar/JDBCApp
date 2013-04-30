@@ -15,7 +15,7 @@ import com.aman.domain.Record;
 import static org.mockito.Mockito.*;
 
 public class SearchBookServiceTest {
-
+/*
 	BookDao mockedBookDao;
 	RecordDao mockedRecordDao;
 	Book mockedBook;
@@ -55,7 +55,9 @@ public class SearchBookServiceTest {
 	/*
 	 * @Test public void testRecordForIssue() { fail("Not yet implemented"); }
 	 */
+	/*
 	@After
 	public void tearDown() throws Exception {
 	}
+	*/
 }

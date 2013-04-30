@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.aman.Jdbc.ConnectionUtils;
+import com.aman.dao.interfaces.BookDAO;
 import com.aman.domain.Book;
 
-public class BookDao {
+public class BookDao implements BookDAO {
 	List<Book> searchBookList = new ArrayList<Book>();
 
 	public void createBook(Book book) {

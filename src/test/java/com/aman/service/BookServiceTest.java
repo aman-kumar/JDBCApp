@@ -15,6 +15,7 @@ import com.aman.domain.Book;
 import static org.mockito.Mockito.*;
 
 public class BookServiceTest {
+	/*
 	private BookService bookService;
 	static BookDao mockedDao;
 	static Book mockedBook;
@@ -29,7 +30,7 @@ public class BookServiceTest {
 	/*
 	 * public List<Book> getList() { return bookdao.listBook(); }
 	 */
-
+/*
 	@Test
 	public void testBookService() {
 		mockedDao.createBook(mockedBook);
@@ -42,4 +43,5 @@ public class BookServiceTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+	*/
 }

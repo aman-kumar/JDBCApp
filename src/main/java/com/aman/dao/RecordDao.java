@@ -9,11 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.aman.Jdbc.ConnectionUtils;
+import com.aman.dao.interfaces.RecordDAO;
 import com.aman.domain.Book;
 import com.aman.domain.Record;
 import com.aman.domain.Student;
 
-public class RecordDao {
+public class RecordDao implements RecordDAO {
 
 	public void createRecord(Record record) {
 		Connection con = ConnectionUtils.getConnection();

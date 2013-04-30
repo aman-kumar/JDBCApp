@@ -18,6 +18,7 @@ import java.util.*;
 import static org.mockito.Mockito.*;
 
 public class StudentServiceTest {
+	/*
 	private StudentService studentService;
 	StudentDao mockedDao;
 	Student mockedStudent;
@@ -43,5 +44,5 @@ public class StudentServiceTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+*/
 }

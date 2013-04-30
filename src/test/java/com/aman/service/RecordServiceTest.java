@@ -14,6 +14,7 @@ import com.aman.dao.RecordDao;
 import com.aman.domain.Record;
 
 public class RecordServiceTest {
+/*
 	RecordDao mockedRecordDao;
 
 	@Before
@@ -43,4 +44,5 @@ public class RecordServiceTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+*/
 }

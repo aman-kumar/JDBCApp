@@ -16,6 +16,7 @@ import com.aman.domain.Student;
 import static org.mockito.Mockito.*;
 
 public class IssueServiceTest {
+	/*
 	RecordDao mockedRecordDao;
 	StudentDao mockedStudentDao;
 
@@ -63,5 +64,5 @@ public class IssueServiceTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+*/
 }
