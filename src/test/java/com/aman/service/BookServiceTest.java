@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -20,12 +21,8 @@ public class BookServiceTest {
 	BookService service;
 	@Mock
 	BookDao bookDao;
-	@Mock
-	Book book;
-	@Mock
-	Book book1;
-	@Mock
-	List<Book> bookList;
+	Book book=new Book();
+	List<Book> bookList = new ArrayList<Book>();
 
 	@Before
 	public void setUp() throws Exception {
@@ -33,7 +30,6 @@ public class BookServiceTest {
 		MockitoAnnotations.initMocks(this);
 		service = new BookService();
 		bookList.add(book);
-		bookList.add(book1);
 	}
 
 	@Test

@@ -1,33 +1,30 @@
 package com.aman.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import org.junit.After;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.aman.Jdbc.DbConfiguration;
 import com.aman.dao.StudentDao;
-
-import com.aman.domain.Book;
 import com.aman.domain.Student;
-import java.util.*;
-
-import static org.mockito.Mockito.*;
 
 public class StudentServiceTest {
 
 	StudentService service;
-	@Mock
-	Student student;
+
+	Student student = new Student();
 	@Mock
 	StudentDao studentDao;
 
-	@Mock
-	List<Student> studentList;
+	List<Student> studentList = new ArrayList<Student>();
 
 	@Before
 	public void setUp() throws Exception {

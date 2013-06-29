@@ -1,13 +1,12 @@
 package com.aman.service;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -18,38 +17,29 @@ import com.aman.dao.RecordDao;
 import com.aman.domain.Record;
 
 public class RecordServiceTest {
-/*
- *    public List<Record> getList() {
-        return recorddao.listRecord();
-    }
- * 
- */
-	
+
 	RecordService service;
-	
+
 	@Mock
 	RecordDao recordDao;
-	
-	@Mock
-	Record record;
-	
-	@Mock
-	List<Record> recordList;
-	
+
+	Record record = new Record();
+
+	List<Record> recordList = new ArrayList<Record>();
+
 	@Before
-	public void setUp() throws Exception{
+	public void setUp() throws Exception {
 		DbConfiguration.populateSqls();
 		MockitoAnnotations.initMocks(this);
-		service=new RecordService();
+		service = new RecordService();
 		recordList.add(record);
 	}
-	
+
 	@Test
-	
-	public void testGetList(){
+	public void testGetList() {
 		when(recordDao.listRecord()).thenReturn(recordList);
-		assertNotNull("Record List should not be null ",recordDao.listRecord());
+		assertNotNull("Record List should not be null ", recordDao.listRecord());
 		verify(recordDao).listRecord();
-		
+
 	}
 }

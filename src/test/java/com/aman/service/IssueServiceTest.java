@@ -1,11 +1,12 @@
 package com.aman.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -17,27 +18,21 @@ import com.aman.dao.StudentDao;
 import com.aman.domain.Record;
 import com.aman.domain.Student;
 
-import static org.mockito.Mockito.*;
-
 public class IssueServiceTest {
 
 	IssueService service;
-	@Mock
-	Record record;
 
-	@Mock
-	Student student;
+	Record record = new Record();
 
-	@Mock
-	List<Record> recordList;
+	Student student = new Student();
 
+	List<Record> recordList = new ArrayList<Record>();
+	List<Student> studentList = new ArrayList<Student>();
 	@Mock
 	RecordDao recordDao;
-	
+
 	@Mock
 	StudentDao studentDao;
-	@Mock
-	List<Student> studentList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -46,7 +41,7 @@ public class IssueServiceTest {
 		service = new IssueService();
 		studentList.add(student);
 		recordList.add(record);
-		
+
 	}
 
 	@Test

@@ -1,33 +1,31 @@
 package com.aman.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.aman.Jdbc.DbConfiguration;
-import com.aman.dao.BookDao;
 import com.aman.dao.RecordDao;
-import com.aman.domain.Book;
 import com.aman.domain.Record;
-import static org.mockito.Mockito.*;
 
 public class SearchBookServiceTest {
-	
+
 	SearchBookService service;
-	@Mock
-	Record record;
+
+	Record record = new Record();
 
 	@Mock
 	RecordDao recordDao;
 
-	@Mock
-	List<Record> recordList;
+	List<Record> recordList = new ArrayList<Record>();
 
 	@Before
 	public void setUp() throws Exception {
