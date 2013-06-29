@@ -1,47 +1,47 @@
 package com.aman.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import com.aman.Jdbc.DbConfiguration;
 import com.aman.dao.BookDao;
 import com.aman.domain.Book;
 
-import static org.mockito.Mockito.*;
-
 public class BookServiceTest {
-	/*
-	private BookService bookService;
-	static BookDao mockedDao;
-	static Book mockedBook;
+	
+	BookService service;
+	@Mock
+	BookDao bookDao;
+	@Mock
+	Book book;
+	@Mock
+	Book book1;
+	@Mock
+	List<Book> bookList;
 
-	@BeforeClass
-	public static void setUp() throws Exception {
-		mockedDao = mock(BookDao.class);
-		mockedBook = mock(Book.class);
-
+	@Before
+	public void setUp() throws Exception {
+		DbConfiguration.populateSqls();
+		MockitoAnnotations.initMocks(this);
+		service = new BookService();
+		bookList.add(book);
+		bookList.add(book1);
 	}
 
-	/*
-	 * public List<Book> getList() { return bookdao.listBook(); }
-	 */
-/*
 	@Test
-	public void testBookService() {
-		mockedDao.createBook(mockedBook);
-		verify(mockedDao).createBook(mockedBook);
-		List<Book> mockList = mock(List.class);
-		when(mockedDao.listBook()).thenReturn(mockList);
-		verify(mockedDao.listBook());
+	public void testGetList() {
+		when(bookDao.listBook()).thenReturn(bookList);
+		System.out.println("Result : " +bookDao.listBook());
+		assertNotNull("List should not be null", service.getList());
+		verify(bookDao).listBook();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-	*/
 }

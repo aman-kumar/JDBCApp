@@ -7,7 +7,10 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import com.aman.Jdbc.DbConfiguration;
 import com.aman.dao.BookDao;
 import com.aman.dao.RecordDao;
 import com.aman.domain.Book;
@@ -15,49 +18,30 @@ import com.aman.domain.Record;
 import static org.mockito.Mockito.*;
 
 public class SearchBookServiceTest {
-/*
-	BookDao mockedBookDao;
-	RecordDao mockedRecordDao;
-	Book mockedBook;
+	
+	SearchBookService service;
+	@Mock
+	Record record;
+
+	@Mock
+	RecordDao recordDao;
+
+	@Mock
+	List<Record> recordList;
 
 	@Before
 	public void setUp() throws Exception {
-		mockedBookDao = mock(BookDao.class);
-		mockedRecordDao = mock(RecordDao.class);
-		mockedBook = mock(Book.class);
+		DbConfiguration.populateSqls();
+		MockitoAnnotations.initMocks(this);
+		service = new SearchBookService();
+		recordList.add(record);
 	}
 
 	@Test
-	public void testSearchBookService() {
-
+	public void testGetSearchList() {
+		when(recordDao.getRecordList()).thenReturn(recordList);
+		assertNotNull("Record List should not be null",
+				recordDao.getRecordList());
+		verify(recordDao).getRecordList();
 	}
-
-	@Test
-	public void testSearch() {
-		mockedBookDao.createBook(mockedBook);
-		verify(mockedBookDao).createBook(mockedBook);
-	}
-
-	@Test
-	public void testSetBookRecordList() {
-		List<Book> mockBookList = mock(List.class);
-		mockedRecordDao.bookRecordList(mockBookList);
-		verify(mockedRecordDao).bookRecordList(mockBookList);
-	}
-
-	@Test
-	public void testGetSearcRecordList() {
-		List<Record> mockBookList = mock(List.class);
-		when(mockedRecordDao.getRecordList()).thenReturn(mockBookList);
-		verify(mockedRecordDao.getRecordList());
-	}
-
-	/*
-	 * @Test public void testRecordForIssue() { fail("Not yet implemented"); }
-	 */
-	/*
-	@After
-	public void tearDown() throws Exception {
-	}
-	*/
 }

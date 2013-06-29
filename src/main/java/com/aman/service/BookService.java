@@ -6,23 +6,19 @@ import com.aman.dao.BookDao;
 import com.aman.domain.Book;
 
 public class BookService {
-    BookDao bookdao;
+	BookDao bookdao;
 
-    public BookService() {
-        bookdao = new BookDao();
-    }
 
-    public void create(Book book) {
-        bookdao.createBook(book);
-    }
+	public BookService() {
+		bookdao = new BookDao();
+	}
 
-    public List<Book> getList() {
-        return bookdao.listBook();
-    }
-   // public void search(Book book){
-    //    bookdao.searchBook(book);
-    //}
-    //public List<Book> getSearchedBookList(){
-      //  return bookdao.listSearchedBook();
-    //}
+	public void create(Book book) {
+		bookdao.createBook(book);
+	}
+
+	public List<Book> getList() {
+		return bookdao.listBook();
+	}
+
 }

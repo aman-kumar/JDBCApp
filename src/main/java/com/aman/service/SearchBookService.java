@@ -22,10 +22,13 @@ public class SearchBookService {
 		bookDao.searchBook(book);
 	}
 
-	List<Book> searchedBookList = bookDao.listSearchedBook();
+	public List<Book> searchBookList() {
+		List<Book> searchedBookList = bookDao.listSearchedBook();
+		return searchedBookList;
+	}
 
 	public void setBookRecordList() {
-		recordDao.bookRecordList(searchedBookList);
+		recordDao.bookRecordList(this.searchBookList());
 	}
 
 	public List<Record> getSearcRecordList() {

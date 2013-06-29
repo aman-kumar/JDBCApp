@@ -24,19 +24,24 @@ public class IssueService {
 		studentDao.searchStudent(student);
 	}
 
-	List<Student> searchStudent = studentDao.getSearchStudent();
+	public List<Student> getStudent() {
+		List<Student> searchStudent = studentDao.getSearchStudent();
+		return searchStudent;
+	}
 
 	public void createRecord(Record record) {
 		recordDao.createSearchRecord(record);
 	}
 
-	List<Record> searchRecord = recordDao.getSearchedRecordList();
-	
+	public List<Record> getRecord() {
+		List<Record> searchRecord = recordDao.getSearchedRecordList();
+		return searchRecord;
+	}
 
 	// now both above list will go as the argument to the to the update Record
 	public void updateRecord() {
-		recordDao.updateRecord(searchStudent, searchRecord);
-		
+		recordDao.updateRecord(this.getStudent(), this.getRecord());
+
 	}
 
 	public List<Record> getUpdatedRecord() {

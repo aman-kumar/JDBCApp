@@ -2,47 +2,46 @@ package com.aman.service;
 
 import static org.junit.Assert.*;
 
-
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-
+import com.aman.Jdbc.DbConfiguration;
 import com.aman.dao.StudentDao;
 
 import com.aman.domain.Book;
 import com.aman.domain.Student;
 import java.util.*;
+
 import static org.mockito.Mockito.*;
 
 public class StudentServiceTest {
-	/*
-	private StudentService studentService;
-	StudentDao mockedDao;
-	Student mockedStudent;
+
+	StudentService service;
+	@Mock
+	Student student;
+	@Mock
+	StudentDao studentDao;
+
+	@Mock
+	List<Student> studentList;
 
 	@Before
 	public void setUp() throws Exception {
-		mockedDao = mock(StudentDao.class);
-		mockedStudent = mock(Student.class);
+		DbConfiguration.populateSqls();
+		MockitoAnnotations.initMocks(this);
+		service = new StudentService();
+		studentList.add(student);
 	}
 
-	// studentdao.create(student);
-	// return studentdao.getList();
 	@Test
-	public void testStudentService() {
-		mockedDao.create(mockedStudent);
-		verify(mockedDao).create(mockedStudent);
-		List<Student> mockList = mock(List.class);
-		when(mockedDao.getList())
-				.thenReturn( mockList);
-		verify(mockedDao.getList());
+	public void testGetList() {
+		when(studentDao.getList()).thenReturn(studentList);
+		assertNotNull("Student List should not be null ", studentDao.getList());
+		verify(studentDao).getList();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-*/
 }
